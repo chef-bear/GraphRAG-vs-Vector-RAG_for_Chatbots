@@ -1,1 +1,1 @@
-# GraphRAG-vs-Vector-RAG-for-Economic-Financial-Q-A
+# GraphRAG-vs-Vector-RAG-for-chatbots-Q-A
