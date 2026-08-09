@@ -1,126 +1,623 @@
 """
-Fetch recent SEC EDGAR filings for every company in the S&P 500
-and store the results in a PostgreSQL database.
+Fetch the last 5 years of SEC EDGAR 10-K and 10-Q filings
+for every company in the S&P 500 and store them in PostgreSQL.
 
-Requires: requests, pandas, sqlalchemy, psycopg2-binary
-    pip install requests pandas sqlalchemy psycopg2-binary
+Each row represents ONE filing and includes the cleaned filing text.
+
+Requires:
+    pip install requests pandas sqlalchemy psycopg2-binary python-dotenv beautifulsoup4 lxml
 """
 
+import os
 import time
+from io import StringIO
+from datetime import datetime, timedelta
+
 import requests
 import pandas as pd
-from sqlalchemy import create_engine
-import os
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
+
+
+# ---------------------------------------------------------
+# ENVIRONMENT / CONFIG
+# ---------------------------------------------------------
 
 load_dotenv()
 
-
-# IMPORTANT: replace with your real name/email - SEC blocks generic User-Agents
 HEADERS = {
-    "User-Agent": "kevinlzhang129@gmail.com"
+    "User-Agent": "Kevin Zhang kevinlzhang129@gmail.com"
 }
 
-# Update these to match your local PostgreSQL setup
-DB_USER = "kevin"
+DB_USER = os.environ.get("DB_USER")
 DB_PASSWORD = os.environ.get("DB_PASSWORD")
-DB_HOST = "localhost"
-DB_PORT = "5432"
-DB_NAME = "chatbot_db"
+DB_HOST = os.environ.get("DB_HOST", "localhost")
+DB_PORT = os.environ.get("DB_PORT", "5432")
+DB_NAME = os.environ.get("DB_NAME")
 
-DB_URL = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+DB_URL = (
+    f"postgresql+psycopg2://"
+    f"{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+)
 
+ALLOWED_FORMS = {"10-K", "10-Q"}
+
+YEARS_BACK = 5
+
+REQUEST_DELAY_SECONDS = 0.2
+
+
+# ---------------------------------------------------------
+# S&P 500
+# ---------------------------------------------------------
 
 def get_sp500_tickers() -> list[str]:
-    """Scrape the current S&P 500 ticker list from Wikipedia."""
-    from io import StringIO
+    """
+    Scrape the current S&P 500 ticker list from Wikipedia.
+    """
 
     url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-    wiki_headers = {
+
+    headers = {
         "User-Agent": "Mozilla/5.0 (compatible; sp500-fetcher/1.0)"
     }
-    response = requests.get(url, headers=wiki_headers)
+
+    response = requests.get(
+        url,
+        headers=headers,
+        timeout=30
+    )
+
     response.raise_for_status()
 
     tables = pd.read_html(StringIO(response.text))
+
     sp500_table = tables[0]
+
     tickers = sp500_table["Symbol"].tolist()
-    tickers = [t.replace(".", "-") for t in tickers]
+
+    # SEC uses "-" instead of "." for tickers like BRK.B
+    tickers = [
+        ticker.replace(".", "-")
+        for ticker in tickers
+    ]
+
     return tickers
 
 
+# ---------------------------------------------------------
+# SEC TICKER -> CIK
+# ---------------------------------------------------------
+
 def get_ticker_to_cik_map() -> dict[str, str]:
-    """Download SEC's full ticker -> CIK mapping."""
+    """
+    Download SEC's ticker -> CIK mapping.
+    """
+
     url = "https://www.sec.gov/files/company_tickers.json"
-    response = requests.get(url, headers=HEADERS)
+
+    response = requests.get(
+        url,
+        headers=HEADERS,
+        timeout=30
+    )
+
     response.raise_for_status()
+
     data = response.json()
 
     return {
-        entry["ticker"]: str(entry["cik_str"]).zfill(10)
+        entry["ticker"].upper(): str(entry["cik_str"]).zfill(10)
         for entry in data.values()
     }
 
 
+# ---------------------------------------------------------
+# SEC COMPANY SUBMISSIONS
+# ---------------------------------------------------------
+
 def get_company_filings(cik: str) -> dict:
-    """Fetch a company's filing history from EDGAR."""
+    """
+    Fetch a company's SEC filing history metadata.
+    """
+
     url = f"https://data.sec.gov/submissions/CIK{cik}.json"
-    response = requests.get(url, headers=HEADERS)
+
+    response = requests.get(
+        url,
+        headers=HEADERS,
+        timeout=30
+    )
+
     response.raise_for_status()
+
     return response.json()
 
 
-def main():
-    print("Fetching S&P 500 ticker list...")
-    sp500_tickers = get_sp500_tickers()
-    print(f"Found {len(sp500_tickers)} tickers.")
+# ---------------------------------------------------------
+# BUILD SEC FILING URL
+# ---------------------------------------------------------
 
-    print("Fetching SEC ticker -> CIK map...")
+def build_filing_url(
+    cik: str,
+    accession_number: str,
+    primary_document: str
+) -> str:
+    """
+    Construct the direct SEC EDGAR URL for a filing document.
+    """
+
+    cik_without_leading_zeros = str(int(cik))
+
+    accession_without_dashes = accession_number.replace("-", "")
+
+    return (
+        "https://www.sec.gov/Archives/edgar/data/"
+        f"{cik_without_leading_zeros}/"
+        f"{accession_without_dashes}/"
+        f"{primary_document}"
+    )
+
+
+# ---------------------------------------------------------
+# DOWNLOAD FILING
+# ---------------------------------------------------------
+
+def download_filing_html(url: str) -> str:
+    """
+    Download the raw HTML for a filing.
+    """
+
+    response = requests.get(
+        url,
+        headers=HEADERS,
+        timeout=60
+    )
+
+    response.raise_for_status()
+
+    return response.text
+
+
+# ---------------------------------------------------------
+# CLEAN HTML
+# ---------------------------------------------------------
+
+def html_to_text(html: str) -> str:
+    """
+    Convert SEC filing HTML to cleaned plain text.
+    """
+
+    soup = BeautifulSoup(
+        html,
+        "lxml"
+    )
+
+    # Remove unnecessary elements
+    for tag in soup(
+        [
+            "script",
+            "style",
+            "noscript"
+        ]
+    ):
+        tag.decompose()
+
+    text_content = soup.get_text(
+        separator=" ",
+        strip=True
+    )
+
+    # Collapse repeated whitespace
+    cleaned_text = " ".join(
+        text_content.split()
+    )
+
+    return cleaned_text
+
+
+# ---------------------------------------------------------
+# CREATE TABLE
+# ---------------------------------------------------------
+
+def create_filings_table(engine):
+    """
+    Create the PostgreSQL table if it does not already exist.
+
+    accession_number is UNIQUE so rerunning the scraper
+    does not create duplicate filings.
+    """
+
+    create_table_sql = """
+    CREATE TABLE IF NOT EXISTS sp500_filings (
+        id BIGSERIAL PRIMARY KEY,
+
+        ticker TEXT NOT NULL,
+        cik TEXT NOT NULL,
+        company_name TEXT,
+
+        form TEXT NOT NULL,
+        filing_date DATE,
+        report_date DATE,
+
+        accession_number TEXT UNIQUE NOT NULL,
+        primary_document TEXT,
+
+        filing_url TEXT,
+        filing_text TEXT,
+
+        sic_description TEXT,
+
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    """
+
+    with engine.begin() as connection:
+        connection.execute(
+            text(create_table_sql)
+        )
+
+
+# ---------------------------------------------------------
+# INSERT FILINGS
+# ---------------------------------------------------------
+
+def insert_filing(
+    engine,
+    filing: dict
+):
+    """
+    Insert a filing into PostgreSQL.
+
+    If accession_number already exists,
+    skip the filing.
+    """
+
+    insert_sql = """
+    INSERT INTO sp500_filings (
+        ticker,
+        cik,
+        company_name,
+        form,
+        filing_date,
+        report_date,
+        accession_number,
+        primary_document,
+        filing_url,
+        filing_text,
+        sic_description
+    )
+    VALUES (
+        :ticker,
+        :cik,
+        :company_name,
+        :form,
+        :filing_date,
+        :report_date,
+        :accession_number,
+        :primary_document,
+        :filing_url,
+        :filing_text,
+        :sic_description
+    )
+    ON CONFLICT (accession_number)
+    DO NOTHING;
+    """
+
+    with engine.begin() as connection:
+        connection.execute(
+            text(insert_sql),
+            filing
+        )
+
+def filing_exists(engine, accession_number: str) -> bool:
+    query = """
+    SELECT 1
+    FROM sp500_filings
+    WHERE accession_number = :accession_number
+    LIMIT 1;
+    """
+
+    with engine.connect() as connection:
+        result = connection.execute(
+            text(query),
+            {"accession_number": accession_number}
+        ).first()
+
+    return result is not None
+
+# ---------------------------------------------------------
+# MAIN
+# ---------------------------------------------------------
+
+def main():
+
+    print(
+        "Connecting to PostgreSQL..."
+    )
+
+    engine = create_engine(
+        DB_URL
+    )
+
+    create_filings_table(
+        engine
+    )
+
+    print(
+        "Fetching S&P 500 ticker list..."
+    )
+
+    sp500_tickers = get_sp500_tickers()
+
+    print(
+        f"Found {len(sp500_tickers)} companies."
+    )
+
+    print(
+        "Fetching SEC ticker -> CIK map..."
+    )
+
     ticker_to_cik = get_ticker_to_cik_map()
 
-    results = []
+    cutoff_date = (
+        datetime.now()
+        - timedelta(days=YEARS_BACK * 365)
+    ).date()
 
-    for i, ticker in enumerate(sp500_tickers, start=1):
-        cik = ticker_to_cik.get(ticker)
+    print(
+        f"Downloading filings since {cutoff_date}"
+    )
+
+    csv_results = []
+
+    total_filings_downloaded = 0
+
+    for company_index, ticker in enumerate(
+        sp500_tickers,
+        start=1
+    ):
+
+        cik = ticker_to_cik.get(
+            ticker.upper()
+        )
+
         if not cik:
-            print(f"[{i}/{len(sp500_tickers)}] {ticker}: no CIK found, skipping")
+
+            print(
+                f"[{company_index}/{len(sp500_tickers)}] "
+                f"{ticker}: no CIK found"
+            )
+
             continue
 
         try:
-            company_data = get_company_filings(cik)
-            recent = company_data["filings"]["recent"]
 
-            results.append({
-                "ticker": ticker,
-                "cik": cik,
-                "name": company_data.get("name"),
-                "latest_form": recent["form"][0] if recent["form"] else None,
-                "latest_filing_date": recent["filingDate"][0] if recent["filingDate"] else None,
-                "sic_description": company_data.get("sicDescription"),
-            })
-            print(f"[{i}/{len(sp500_tickers)}] {ticker}: OK")
+            company_data = get_company_filings(
+                cik
+            )
 
-        except Exception as e:
-            print(f"[{i}/{len(sp500_tickers)}] {ticker}: ERROR - {e}")
+            recent = company_data[
+                "filings"
+            ][
+                "recent"
+            ]
 
-        # SEC rate limit is 10 requests/second - this keeps us well under that
-        time.sleep(0.15)
+            company_name = company_data.get(
+                "name"
+            )
 
-    df = pd.DataFrame(results)
+            sic_description = company_data.get(
+                "sicDescription"
+            )
 
-    # Also keep a CSV as a local backup/inspection copy
-    df.to_csv("sp500_edgar_filings.csv", index=False)
+            company_filings_count = 0
 
-    # Write to PostgreSQL
-    engine = create_engine(DB_URL)
-    df.to_sql(
-        "sp500_filings",
-        engine,
-        if_exists="replace",  # use "append" instead if you want to keep history across runs
-        index=False,
+            number_of_filings = len(
+                recent["form"]
+            )
+
+            for filing_index in range(
+                number_of_filings
+            ):
+
+                form = recent[
+                    "form"
+                ][filing_index]
+
+                if form not in ALLOWED_FORMS:
+                    continue
+
+                filing_date_string = recent[
+                    "filingDate"
+                ][filing_index]
+
+                filing_date = datetime.strptime(
+                    filing_date_string,
+                    "%Y-%m-%d"
+                ).date()
+
+                if filing_date < cutoff_date:
+                    continue
+
+                accession_number = recent[
+                    "accessionNumber"
+                ][filing_index]
+
+                if filing_exists(engine, accession_number):
+                    print(
+                            f"{ticker} {form} {filing_date}: already downloaded, skipping"
+                    )
+                    continue
+                
+                primary_document = recent[
+                    "primaryDocument"
+                ][filing_index]
+
+                report_date_string = recent[
+                    "reportDate"
+                ][filing_index]
+
+                report_date = None
+
+                if report_date_string:
+
+                    try:
+
+                        report_date = datetime.strptime(
+                            report_date_string,
+                            "%Y-%m-%d"
+                        ).date()
+
+                    except ValueError:
+
+                        report_date = None
+
+                filing_url = build_filing_url(
+                    cik,
+                    accession_number,
+                    primary_document
+                )
+
+                try:
+
+                    filing_html = download_filing_html(
+                        filing_url
+                    )
+
+                    filing_text = html_to_text(
+                        filing_html
+                    )
+
+                except Exception as filing_error:
+
+                    print(
+                        f"    ERROR downloading "
+                        f"{ticker} {form} "
+                        f"{filing_date}: "
+                        f"{filing_error}"
+                    )
+
+                    continue
+
+                filing_record = {
+
+                    "ticker": ticker,
+
+                    "cik": cik,
+
+                    "company_name": company_name,
+
+                    "form": form,
+
+                    "filing_date": filing_date,
+
+                    "report_date": report_date,
+
+                    "accession_number":
+                        accession_number,
+
+                    "primary_document":
+                        primary_document,
+
+                    "filing_url":
+                        filing_url,
+
+                    "filing_text":
+                        filing_text,
+
+                    "sic_description":
+                        sic_description,
+                }
+
+                insert_filing(
+                    engine,
+                    filing_record
+                )
+
+                csv_results.append(
+                    {
+                        "ticker": ticker,
+                        "cik": cik,
+                        "company_name": company_name,
+                        "form": form,
+                        "filing_date": filing_date,
+                        "report_date": report_date,
+                        "accession_number":
+                            accession_number,
+                        "primary_document":
+                            primary_document,
+                        "filing_url":
+                            filing_url,
+                        "sic_description":
+                            sic_description,
+                        "text_length":
+                            len(filing_text),
+                    }
+                )
+
+                company_filings_count += 1
+
+                total_filings_downloaded += 1
+
+                print(
+                    f"    {ticker} "
+                    f"{form} "
+                    f"{filing_date} "
+                    f"({len(filing_text):,} chars)"
+                )
+
+                time.sleep(
+                    REQUEST_DELAY_SECONDS
+                )
+
+            print(
+                f"[{company_index}/{len(sp500_tickers)}] "
+                f"{ticker}: "
+                f"{company_filings_count} filings"
+            )
+
+            time.sleep(
+                REQUEST_DELAY_SECONDS
+            )
+
+        except Exception as error:
+
+            print(
+                f"[{company_index}/{len(sp500_tickers)}] "
+                f"{ticker}: ERROR - {error}"
+            )
+
+    # -----------------------------------------------------
+    # CSV BACKUP
+    # -----------------------------------------------------
+
+    if csv_results:
+
+        df = pd.DataFrame(
+            csv_results
+        )
+
+        df.to_csv(
+            "sp500_edgar_filings.csv",
+            index=False
+        )
+
+    print()
+    print(
+        "Done."
     )
-
-    print(f"\nDone. Saved {len(df)} rows to sp500_edgar_filings.csv and the 'sp500_filings' table in PostgreSQL.")
+    print(
+        f"Downloaded/processed "
+        f"{total_filings_downloaded} filings."
+    )
+    print(
+        "Saved filings to PostgreSQL table:"
+    )
+    print(
+        "sp500_filings"
+    )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1 @@
+SELECT * FROM sp500_filings LIMIT 10;
