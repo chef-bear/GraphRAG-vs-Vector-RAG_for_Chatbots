@@ -1,12 +1,3 @@
-"""
-Fetch the last 5 years of SEC EDGAR 10-K and 10-Q filings
-for every company in the S&P 500 and store them in PostgreSQL.
-
-Each row represents ONE filing and includes the cleaned filing text.
-
-Requires:
-    pip install requests pandas sqlalchemy psycopg2-binary python-dotenv beautifulsoup4 lxml
-"""
 
 import os
 import time
@@ -20,10 +11,6 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 
 
-# ---------------------------------------------------------
-# ENVIRONMENT / CONFIG
-# ---------------------------------------------------------
-
 load_dotenv()
 
 HEADERS = {
@@ -32,8 +19,8 @@ HEADERS = {
 
 DB_USER = os.environ.get("DB_USER")
 DB_PASSWORD = os.environ.get("DB_PASSWORD")
-DB_HOST = os.environ.get("DB_HOST", "localhost")
-DB_PORT = os.environ.get("DB_PORT", "5432")
+DB_HOST = os.environ.get("DB_HOST")
+DB_PORT = os.environ.get("DB_PORT")
 DB_NAME = os.environ.get("DB_NAME")
 
 DB_URL = (
@@ -47,10 +34,6 @@ YEARS_BACK = 5
 
 REQUEST_DELAY_SECONDS = 0.2
 
-
-# ---------------------------------------------------------
-# S&P 500
-# ---------------------------------------------------------
 
 def get_sp500_tickers() -> list[str]:
     """
@@ -77,7 +60,6 @@ def get_sp500_tickers() -> list[str]:
 
     tickers = sp500_table["Symbol"].tolist()
 
-    # SEC uses "-" instead of "." for tickers like BRK.B
     tickers = [
         ticker.replace(".", "-")
         for ticker in tickers
@@ -85,10 +67,6 @@ def get_sp500_tickers() -> list[str]:
 
     return tickers
 
-
-# ---------------------------------------------------------
-# SEC TICKER -> CIK
-# ---------------------------------------------------------
 
 def get_ticker_to_cik_map() -> dict[str, str]:
     """
@@ -112,11 +90,6 @@ def get_ticker_to_cik_map() -> dict[str, str]:
         for entry in data.values()
     }
 
-
-# ---------------------------------------------------------
-# SEC COMPANY SUBMISSIONS
-# ---------------------------------------------------------
-
 def get_company_filings(cik: str) -> dict:
     """
     Fetch a company's SEC filing history metadata.
@@ -133,11 +106,6 @@ def get_company_filings(cik: str) -> dict:
     response.raise_for_status()
 
     return response.json()
-
-
-# ---------------------------------------------------------
-# BUILD SEC FILING URL
-# ---------------------------------------------------------
 
 def build_filing_url(
     cik: str,
@@ -160,10 +128,6 @@ def build_filing_url(
     )
 
 
-# ---------------------------------------------------------
-# DOWNLOAD FILING
-# ---------------------------------------------------------
-
 def download_filing_html(url: str) -> str:
     """
     Download the raw HTML for a filing.
@@ -180,10 +144,6 @@ def download_filing_html(url: str) -> str:
     return response.text
 
 
-# ---------------------------------------------------------
-# CLEAN HTML
-# ---------------------------------------------------------
-
 def html_to_text(html: str) -> str:
     """
     Convert SEC filing HTML to cleaned plain text.
@@ -194,7 +154,6 @@ def html_to_text(html: str) -> str:
         "lxml"
     )
 
-    # Remove unnecessary elements
     for tag in soup(
         [
             "script",
@@ -209,17 +168,11 @@ def html_to_text(html: str) -> str:
         strip=True
     )
 
-    # Collapse repeated whitespace
     cleaned_text = " ".join(
         text_content.split()
     )
 
     return cleaned_text
-
-
-# ---------------------------------------------------------
-# CREATE TABLE
-# ---------------------------------------------------------
 
 def create_filings_table(engine):
     """
@@ -258,10 +211,6 @@ def create_filings_table(engine):
             text(create_table_sql)
         )
 
-
-# ---------------------------------------------------------
-# INSERT FILINGS
-# ---------------------------------------------------------
 
 def insert_filing(
     engine,
@@ -326,10 +275,6 @@ def filing_exists(engine, accession_number: str) -> bool:
         ).first()
 
     return result is not None
-
-# ---------------------------------------------------------
-# MAIN
-# ---------------------------------------------------------
 
 def main():
 
@@ -589,9 +534,6 @@ def main():
                 f"{ticker}: ERROR - {error}"
             )
 
-    # -----------------------------------------------------
-    # CSV BACKUP
-    # -----------------------------------------------------
 
     if csv_results:
 
