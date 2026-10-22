@@ -1,0 +1,390 @@
+{
+  "full": {
+    "by_level": {
+      "1": 20,
+      "2": 20,
+      "3": 36,
+      "4": 20,
+      "5": 20
+    },
+    "families": {
+      "acct_counterparties": {
+        "level": 1,
+        "n": 10,
+        "negative_controls": 0
+      },
+      "acct_total_out": {
+        "level": 1,
+        "n": 10,
+        "negative_controls": 0
+      },
+      "cycle_enumeration_window": {
+        "empty": 0,
+        "level": 4,
+        "n": 8,
+        "negative_controls": 0,
+        "size_max": 20,
+        "size_median": 11.5,
+        "size_min": 6
+      },
+      "cycle_membership": {
+        "empty": 5,
+        "level": 4,
+        "n": 12,
+        "negative_controls": 5,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "fan_in_candidates": {
+        "empty": 0,
+        "level": 2,
+        "n": 10,
+        "negative_controls": 0,
+        "size_max": 100,
+        "size_median": 84.5,
+        "size_min": 9
+      },
+      "ring_from_seed": {
+        "empty": 4,
+        "level": 5,
+        "n": 12,
+        "negative_controls": 4,
+        "size_max": 9,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "ring_type": {
+        "empty": 3,
+        "level": 5,
+        "n": 8,
+        "negative_controls": 3,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "same_amount_chain_k": {
+        "empty": 4,
+        "level": 3,
+        "n": 20,
+        "negative_controls": 4,
+        "size_max": 32,
+        "size_median": 3.0,
+        "size_min": 0
+      },
+      "time_respecting_reach_k": {
+        "empty": 0,
+        "level": 3,
+        "n": 16,
+        "negative_controls": 0,
+        "size_max": 378,
+        "size_median": 2.0,
+        "size_min": 1
+      },
+      "top_receivers": {
+        "empty": 0,
+        "level": 2,
+        "n": 10,
+        "negative_controls": 0,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 5
+      }
+    },
+    "n_tasks": 116,
+    "negative_controls": 16,
+    "scale": "full",
+    "seed": 42
+  },
+  "s100": {
+    "by_level": {
+      "1": 20,
+      "2": 20,
+      "3": 36,
+      "4": 20,
+      "5": 20
+    },
+    "families": {
+      "acct_counterparties": {
+        "level": 1,
+        "n": 10,
+        "negative_controls": 0
+      },
+      "acct_total_out": {
+        "level": 1,
+        "n": 10,
+        "negative_controls": 0
+      },
+      "cycle_enumeration_window": {
+        "empty": 0,
+        "level": 4,
+        "n": 8,
+        "negative_controls": 0,
+        "size_max": 21,
+        "size_median": 18.0,
+        "size_min": 9
+      },
+      "cycle_membership": {
+        "empty": 5,
+        "level": 4,
+        "n": 12,
+        "negative_controls": 5,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "fan_in_candidates": {
+        "empty": 0,
+        "level": 2,
+        "n": 10,
+        "negative_controls": 0,
+        "size_max": 104,
+        "size_median": 13.0,
+        "size_min": 3
+      },
+      "ring_from_seed": {
+        "empty": 4,
+        "level": 5,
+        "n": 12,
+        "negative_controls": 4,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "ring_type": {
+        "empty": 3,
+        "level": 5,
+        "n": 8,
+        "negative_controls": 3,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "same_amount_chain_k": {
+        "empty": 4,
+        "level": 3,
+        "n": 20,
+        "negative_controls": 4,
+        "size_max": 4,
+        "size_median": 2.0,
+        "size_min": 0
+      },
+      "time_respecting_reach_k": {
+        "empty": 0,
+        "level": 3,
+        "n": 16,
+        "negative_controls": 0,
+        "size_max": 137,
+        "size_median": 4.0,
+        "size_min": 1
+      },
+      "top_receivers": {
+        "empty": 0,
+        "level": 2,
+        "n": 10,
+        "negative_controls": 0,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 5
+      }
+    },
+    "n_tasks": 116,
+    "negative_controls": 16,
+    "scale": "s100",
+    "seed": 42
+  },
+  "s25": {
+    "by_level": {
+      "1": 20,
+      "2": 20,
+      "3": 36,
+      "4": 20,
+      "5": 20
+    },
+    "families": {
+      "acct_counterparties": {
+        "level": 1,
+        "n": 10,
+        "negative_controls": 0
+      },
+      "acct_total_out": {
+        "level": 1,
+        "n": 10,
+        "negative_controls": 0
+      },
+      "cycle_enumeration_window": {
+        "empty": 0,
+        "level": 4,
+        "n": 8,
+        "negative_controls": 0,
+        "size_max": 10,
+        "size_median": 8.0,
+        "size_min": 7
+      },
+      "cycle_membership": {
+        "empty": 5,
+        "level": 4,
+        "n": 12,
+        "negative_controls": 5,
+        "size_max": 9,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "fan_in_candidates": {
+        "empty": 0,
+        "level": 2,
+        "n": 10,
+        "negative_controls": 0,
+        "size_max": 81,
+        "size_median": 37.0,
+        "size_min": 4
+      },
+      "ring_from_seed": {
+        "empty": 4,
+        "level": 5,
+        "n": 12,
+        "negative_controls": 4,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "ring_type": {
+        "empty": 3,
+        "level": 5,
+        "n": 8,
+        "negative_controls": 3,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "same_amount_chain_k": {
+        "empty": 4,
+        "level": 3,
+        "n": 20,
+        "negative_controls": 4,
+        "size_max": 4,
+        "size_median": 2.0,
+        "size_min": 0
+      },
+      "time_respecting_reach_k": {
+        "empty": 0,
+        "level": 3,
+        "n": 16,
+        "negative_controls": 0,
+        "size_max": 111,
+        "size_median": 3.0,
+        "size_min": 1
+      },
+      "top_receivers": {
+        "empty": 0,
+        "level": 2,
+        "n": 10,
+        "negative_controls": 0,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 5
+      }
+    },
+    "n_tasks": 116,
+    "negative_controls": 16,
+    "scale": "s25",
+    "seed": 42
+  },
+  "s50": {
+    "by_level": {
+      "1": 20,
+      "2": 20,
+      "3": 36,
+      "4": 20,
+      "5": 20
+    },
+    "families": {
+      "acct_counterparties": {
+        "level": 1,
+        "n": 10,
+        "negative_controls": 0
+      },
+      "acct_total_out": {
+        "level": 1,
+        "n": 10,
+        "negative_controls": 0
+      },
+      "cycle_enumeration_window": {
+        "empty": 0,
+        "level": 4,
+        "n": 8,
+        "negative_controls": 0,
+        "size_max": 15,
+        "size_median": 11.5,
+        "size_min": 8
+      },
+      "cycle_membership": {
+        "empty": 5,
+        "level": 4,
+        "n": 12,
+        "negative_controls": 5,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "fan_in_candidates": {
+        "empty": 0,
+        "level": 2,
+        "n": 10,
+        "negative_controls": 0,
+        "size_max": 94,
+        "size_median": 46.5,
+        "size_min": 4
+      },
+      "ring_from_seed": {
+        "empty": 4,
+        "level": 5,
+        "n": 12,
+        "negative_controls": 4,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "ring_type": {
+        "empty": 3,
+        "level": 5,
+        "n": 8,
+        "negative_controls": 3,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 0
+      },
+      "same_amount_chain_k": {
+        "empty": 4,
+        "level": 3,
+        "n": 20,
+        "negative_controls": 4,
+        "size_max": 4,
+        "size_median": 2.0,
+        "size_min": 0
+      },
+      "time_respecting_reach_k": {
+        "empty": 0,
+        "level": 3,
+        "n": 16,
+        "negative_controls": 0,
+        "size_max": 111,
+        "size_median": 8.0,
+        "size_min": 1
+      },
+      "top_receivers": {
+        "empty": 0,
+        "level": 2,
+        "n": 10,
+        "negative_controls": 0,
+        "size_max": 5,
+        "size_median": 5.0,
+        "size_min": 5
+      }
+    },
+    "n_tasks": 116,
+    "negative_controls": 16,
+    "scale": "s50",
+    "seed": 42
+  }
+}
