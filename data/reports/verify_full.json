@@ -1,0 +1,1516 @@
+{
+  "scale": "full",
+  "n": 116,
+  "agree": 116,
+  "failed": [],
+  "results": [
+    {
+      "task_id": "full-acct_total_out-000",
+      "family": "acct_total_out",
+      "postgres": {
+        "ok": true,
+        "db_ms": 8.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 7.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_total_out-001",
+      "family": "acct_total_out",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.2
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_total_out-002",
+      "family": "acct_total_out",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 4.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_total_out-003",
+      "family": "acct_total_out",
+      "postgres": {
+        "ok": true,
+        "db_ms": 2.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_total_out-004",
+      "family": "acct_total_out",
+      "postgres": {
+        "ok": true,
+        "db_ms": 5.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_total_out-005",
+      "family": "acct_total_out",
+      "postgres": {
+        "ok": true,
+        "db_ms": 6.2
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_total_out-006",
+      "family": "acct_total_out",
+      "postgres": {
+        "ok": true,
+        "db_ms": 2.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_total_out-007",
+      "family": "acct_total_out",
+      "postgres": {
+        "ok": true,
+        "db_ms": 2.7
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 4.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_total_out-008",
+      "family": "acct_total_out",
+      "postgres": {
+        "ok": true,
+        "db_ms": 2.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_total_out-009",
+      "family": "acct_total_out",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 4.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_counterparties-000",
+      "family": "acct_counterparties",
+      "postgres": {
+        "ok": true,
+        "db_ms": 15.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 92.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_counterparties-001",
+      "family": "acct_counterparties",
+      "postgres": {
+        "ok": true,
+        "db_ms": 8.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 7.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_counterparties-002",
+      "family": "acct_counterparties",
+      "postgres": {
+        "ok": true,
+        "db_ms": 6.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 8.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_counterparties-003",
+      "family": "acct_counterparties",
+      "postgres": {
+        "ok": true,
+        "db_ms": 6.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_counterparties-004",
+      "family": "acct_counterparties",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_counterparties-005",
+      "family": "acct_counterparties",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.2
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_counterparties-006",
+      "family": "acct_counterparties",
+      "postgres": {
+        "ok": true,
+        "db_ms": 5.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_counterparties-007",
+      "family": "acct_counterparties",
+      "postgres": {
+        "ok": true,
+        "db_ms": 11.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 4.8
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_counterparties-008",
+      "family": "acct_counterparties",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.8
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-acct_counterparties-009",
+      "family": "acct_counterparties",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 4.5
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-top_receivers-000",
+      "family": "top_receivers",
+      "postgres": {
+        "ok": true,
+        "db_ms": 55.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 136.8
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-top_receivers-001",
+      "family": "top_receivers",
+      "postgres": {
+        "ok": true,
+        "db_ms": 52.7
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 53.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-top_receivers-002",
+      "family": "top_receivers",
+      "postgres": {
+        "ok": true,
+        "db_ms": 50.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 58.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-top_receivers-003",
+      "family": "top_receivers",
+      "postgres": {
+        "ok": true,
+        "db_ms": 41.1
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 51.8
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-top_receivers-004",
+      "family": "top_receivers",
+      "postgres": {
+        "ok": true,
+        "db_ms": 61.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 47.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-top_receivers-005",
+      "family": "top_receivers",
+      "postgres": {
+        "ok": true,
+        "db_ms": 59.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 53.2
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-top_receivers-006",
+      "family": "top_receivers",
+      "postgres": {
+        "ok": true,
+        "db_ms": 60.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 55.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-top_receivers-007",
+      "family": "top_receivers",
+      "postgres": {
+        "ok": true,
+        "db_ms": 51.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 51.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-top_receivers-008",
+      "family": "top_receivers",
+      "postgres": {
+        "ok": true,
+        "db_ms": 62.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 81.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-top_receivers-009",
+      "family": "top_receivers",
+      "postgres": {
+        "ok": true,
+        "db_ms": 58.1
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 51.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-fan_in_candidates-000",
+      "family": "fan_in_candidates",
+      "postgres": {
+        "ok": true,
+        "db_ms": 883.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 2182.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-fan_in_candidates-001",
+      "family": "fan_in_candidates",
+      "postgres": {
+        "ok": true,
+        "db_ms": 872.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 2074.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-fan_in_candidates-002",
+      "family": "fan_in_candidates",
+      "postgres": {
+        "ok": true,
+        "db_ms": 816.0
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 2046.2
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-fan_in_candidates-003",
+      "family": "fan_in_candidates",
+      "postgres": {
+        "ok": true,
+        "db_ms": 851.2
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 2419.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-fan_in_candidates-004",
+      "family": "fan_in_candidates",
+      "postgres": {
+        "ok": true,
+        "db_ms": 777.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 2112.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-fan_in_candidates-005",
+      "family": "fan_in_candidates",
+      "postgres": {
+        "ok": true,
+        "db_ms": 745.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 1950.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-fan_in_candidates-006",
+      "family": "fan_in_candidates",
+      "postgres": {
+        "ok": true,
+        "db_ms": 786.0
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 2024.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-fan_in_candidates-007",
+      "family": "fan_in_candidates",
+      "postgres": {
+        "ok": true,
+        "db_ms": 802.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 2359.2
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-fan_in_candidates-008",
+      "family": "fan_in_candidates",
+      "postgres": {
+        "ok": true,
+        "db_ms": 812.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 2417.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-fan_in_candidates-009",
+      "family": "fan_in_candidates",
+      "postgres": {
+        "ok": true,
+        "db_ms": 820.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 2400.2
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-000",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 87.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-001",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 7.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 11.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-002",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 8.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-003",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-004",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.2
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-005",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 5.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 103.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-006",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 5.7
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-007",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.5
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-008",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-009",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 4.8
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-010",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.0
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 86.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-011",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 8.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 11.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-012",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 7.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 11.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-013",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 6.7
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 13.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-014",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 6.2
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 9.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-015",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 5.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 87.8
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-016",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 7.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 10.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-017",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 6.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 12.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-018",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 7.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 20.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-same_amount_chain_k-019",
+      "family": "same_amount_chain_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 7.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 10.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-000",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 7.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 170.2
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-001",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 10.0
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 18.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-002",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 8.0
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-003",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 7.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-004",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.0
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 137.8
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-005",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 7.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 13.8
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-006",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 15.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-007",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 5.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 9.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-008",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 6.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 77.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-009",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 8.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-010",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.0
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-011",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 9.2
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 54.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-012",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 2.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 267.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-013",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-014",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 2.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-time_respecting_reach_k-015",
+      "family": "time_respecting_reach_k",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.5
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-000",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 5.0
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 172.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-001",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 9.7
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 8.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-002",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-003",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 7.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 18.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-004",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-005",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 7.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-006",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.1
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 8.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-007",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 4.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 8.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-008",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.2
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-009",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 2.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 4.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-010",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 3.0
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 4.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_membership-011",
+      "family": "cycle_membership",
+      "postgres": {
+        "ok": true,
+        "db_ms": 2.7
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 5.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_enumeration_window-000",
+      "family": "cycle_enumeration_window",
+      "postgres": {
+        "ok": true,
+        "db_ms": 376.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 12971.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_enumeration_window-001",
+      "family": "cycle_enumeration_window",
+      "postgres": {
+        "ok": true,
+        "db_ms": 370.1
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 12022.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_enumeration_window-002",
+      "family": "cycle_enumeration_window",
+      "postgres": {
+        "ok": true,
+        "db_ms": 367.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 12185.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_enumeration_window-003",
+      "family": "cycle_enumeration_window",
+      "postgres": {
+        "ok": true,
+        "db_ms": 390.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 12190.5
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_enumeration_window-004",
+      "family": "cycle_enumeration_window",
+      "postgres": {
+        "ok": true,
+        "db_ms": 364.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 12108.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_enumeration_window-005",
+      "family": "cycle_enumeration_window",
+      "postgres": {
+        "ok": true,
+        "db_ms": 351.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 12114.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_enumeration_window-006",
+      "family": "cycle_enumeration_window",
+      "postgres": {
+        "ok": true,
+        "db_ms": 370.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 12235.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-cycle_enumeration_window-007",
+      "family": "cycle_enumeration_window",
+      "postgres": {
+        "ok": true,
+        "db_ms": 361.6
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 13014.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-000",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 765.2
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 289.2
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-001",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 618.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 24.5
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-002",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 657.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 16.5
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-003",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 672.2
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 94.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-004",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 661.1
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 86.4
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-005",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 660.3
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 16.1
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-006",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 845.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 7.6
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-007",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 692.2
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 10.0
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-008",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 666.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 15.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-009",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 637.8
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 25.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-010",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 643.1
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 14.2
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_from_seed-011",
+      "family": "ring_from_seed",
+      "postgres": {
+        "ok": true,
+        "db_ms": 622.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 15.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_type-000",
+      "family": "ring_type",
+      "postgres": {
+        "ok": true,
+        "db_ms": 619.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 8.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_type-001",
+      "family": "ring_type",
+      "postgres": {
+        "ok": true,
+        "db_ms": 621.0
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 8.5
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_type-002",
+      "family": "ring_type",
+      "postgres": {
+        "ok": true,
+        "db_ms": 653.5
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 25.9
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_type-003",
+      "family": "ring_type",
+      "postgres": {
+        "ok": true,
+        "db_ms": 682.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 18.8
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_type-004",
+      "family": "ring_type",
+      "postgres": {
+        "ok": true,
+        "db_ms": 604.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 6.3
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_type-005",
+      "family": "ring_type",
+      "postgres": {
+        "ok": true,
+        "db_ms": 738.1
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 28.5
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_type-006",
+      "family": "ring_type",
+      "postgres": {
+        "ok": true,
+        "db_ms": 627.9
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 7.7
+      },
+      "ok": true
+    },
+    {
+      "task_id": "full-ring_type-007",
+      "family": "ring_type",
+      "postgres": {
+        "ok": true,
+        "db_ms": 651.4
+      },
+      "neo4j": {
+        "ok": true,
+        "db_ms": 8.3
+      },
+      "ok": true
+    }
+  ]
+}

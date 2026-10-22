@@ -83,5 +83,6 @@ def score(answer_type: str, predicted_raw: Any, truth: Any) -> Score:
     if answer_type == "set_of_cycles":
         return _set_score(map(tuple, pred), map(tuple, truth))
     if answer_type == "set_label":
-        return _set_score(pred["accounts"], truth["accounts"], extra_ok=pred["type"] == truth["type"])
+        same_type = pred["type"] == truth["type"]
+        return _set_score(pred["accounts"], truth["accounts"], extra_ok=same_type)
     raise ValueError(f"unknown answer type {answer_type!r}")

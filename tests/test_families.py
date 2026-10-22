@@ -42,8 +42,9 @@ def test_cypher_k_token_substituted():
 def test_sql_amount_is_exact_decimal():
     from decimal import Decimal
 
-    _, params = FAMILIES["same_amount_chain_k"].sql({"x": 1, "amount": 17.17, "a": 0, "b": 10,
-                                                     "k": 2})
+    _, params = FAMILIES["same_amount_chain_k"].sql(
+        {"x": 1, "amount": 17.17, "a": 0, "b": 10, "k": 2}
+    )
     assert params["amount"] == Decimal("17.17")
 
 
@@ -52,19 +53,22 @@ def test_ring_queries_get_rule_constants():
     assert {"span", "width", "min_senders", "cap"} <= set(params)
 
 
-@pytest.mark.parametrize("name,rows,expected", [
-    ("acct_total_out", [(12.5,)], 12.5),
-    ("acct_total_out", [], 0.0),
-    ("acct_counterparties", [(3,)], 3),
-    ("top_receivers", [(9,), (2,)], [9, 2]),
-    ("fan_in_candidates", [(9,), (2,)], [2, 9]),
-    ("cycle_membership", [], {"in_loop": False, "accounts": []}),
-    ("cycle_membership", [(3,), (1,)], {"in_loop": True, "accounts": [1, 3]}),
-    ("cycle_enumeration_window", [([4, 9, 6],)], [[4, 9, 6]]),
-    ("ring_from_seed", [(5, "cycle"), (2, "fan_in")], [2, 5]),
-    ("ring_type", [(5, "cycle"), (2, "cycle")], {"accounts": [2, 5], "type": "cycle"}),
-    ("ring_type", [], {"accounts": [], "type": "none"}),
-])
+@pytest.mark.parametrize(
+    "name,rows,expected",
+    [
+        ("acct_total_out", [(12.5,)], 12.5),
+        ("acct_total_out", [], 0.0),
+        ("acct_counterparties", [(3,)], 3),
+        ("top_receivers", [(9,), (2,)], [9, 2]),
+        ("fan_in_candidates", [(9,), (2,)], [2, 9]),
+        ("cycle_membership", [], {"in_loop": False, "accounts": []}),
+        ("cycle_membership", [(3,), (1,)], {"in_loop": True, "accounts": [1, 3]}),
+        ("cycle_enumeration_window", [([4, 9, 6],)], [[4, 9, 6]]),
+        ("ring_from_seed", [(5, "cycle"), (2, "fan_in")], [2, 5]),
+        ("ring_type", [(5, "cycle"), (2, "cycle")], {"accounts": [2, 5], "type": "cycle"}),
+        ("ring_type", [], {"accounts": [], "type": "none"}),
+    ],
+)
 def test_from_rows(name, rows, expected):
     assert FAMILIES[name].from_rows(rows) == expected
 
@@ -75,10 +79,16 @@ def test_ring_type_rejects_mixed_types():
 
 
 def test_check_task_reports_each_db():
-    task = {"task_id": "t", "family": "acct_counterparties", "params": {"x": 1},
-            "answer_type": "integer", "ground_truth": 4}
-    ok = check_task(task, lambda q, p: QueryResult([(4,)], 1.0), lambda q, p: QueryResult(
-        [(4,)], 2.0))
+    task = {
+        "task_id": "t",
+        "family": "acct_counterparties",
+        "params": {"x": 1},
+        "answer_type": "integer",
+        "ground_truth": 4,
+    }
+    ok = check_task(
+        task, lambda q, p: QueryResult([(4,)], 1.0), lambda q, p: QueryResult([(4,)], 2.0)
+    )
     assert ok["ok"] and ok["neo4j"]["db_ms"] == 2.0
 
     def boom(q, p):
@@ -89,12 +99,13 @@ def test_check_task_reports_each_db():
     assert bad["postgres"]["answer"] == 5 and "syntax" in bad["neo4j"]["error"]
 
 
+@pytest.fixture(scope="module")
+def tasks():
+    return generate(Context.load(STAGED, "s25"), seed=42)
+
+
 @needs_s25
 class TestGeneratorOnRealData:
-    @pytest.fixture(scope="class")
-    def tasks(self):
-        return generate(Context.load(STAGED, "s25"), seed=42)
-
     def test_counts_and_ids(self, tasks):
         assert len(tasks) == sum(n for _, n in PLAN)
         assert len({t["task_id"] for t in tasks}) == len(tasks)

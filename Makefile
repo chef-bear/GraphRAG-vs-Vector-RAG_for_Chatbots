@@ -45,5 +45,14 @@ lint:
 fmt:
 	$(PY) -m ruff check --fix . && $(PY) -m ruff format .
 
-gen-tasks verify-gt bench analyze:
+SEED ?= 42
+
+gen-tasks:
+	for s in $(SCALES); do $(PY) -m bench.generate --scale $$s --seed $(SEED) || exit 1; done
+
+# Neo4j must hold SCALE (make ingest SCALE=...); Postgres has every scale.
+verify-gt:
+	$(PY) -m bench.verify --scale $(SCALE)
+
+bench analyze:
 	@echo "'$@' is not implemented yet (see docs/PROGRESS.md)"; exit 1

@@ -27,8 +27,15 @@ def test_counterparties_excludes_self():
 
 
 def test_top_receivers_ties_and_self_loops():
-    t = tx((1, 5, 1, 0), (2, 5, 1, 0), (1, 4, 1, 0), (2, 4, 1, 0), (3, 3, 1, 0), (1, 3, 1, 0),
-           (1, 6, 1, 9))
+    t = tx(
+        (1, 5, 1, 0),
+        (2, 5, 1, 0),
+        (1, 4, 1, 0),
+        (2, 4, 1, 0),
+        (3, 3, 1, 0),
+        (1, 3, 1, 0),
+        (1, 6, 1, 9),
+    )
     # 4 and 5 tie at 2 senders -> smaller id first; 3's self-transfer doesn't count
     assert alg.top_receivers(t, 0, 5, 3) == [4, 5, 3]
 
@@ -42,8 +49,14 @@ def test_fan_in_candidates():
 
 
 def test_same_amount_reach():
-    t = tx((1, 2, 5.0, 3), (2, 3, 5.0, 1), (3, 4, 5.0, 2), (3, 1, 5.0, 2), (2, 9, 6.0, 1),
-           (4, 5, 5.0, 30))
+    t = tx(
+        (1, 2, 5.0, 3),
+        (2, 3, 5.0, 1),
+        (3, 4, 5.0, 2),
+        (3, 1, 5.0, 2),
+        (2, 9, 6.0, 1),
+        (4, 5, 5.0, 30),
+    )
     assert alg.same_amount_reach(t, 1, 5.0, 0, 10, 1) == [2]
     assert alg.same_amount_reach(t, 1, 5.0, 0, 10, 3) == [2, 3, 4]  # 1 itself excluded
 
@@ -63,10 +76,16 @@ def test_time_respecting_uses_earliest_arrival():
 
 
 def test_loops_through():
-    t = tx((1, 2, 7.0, 1), (2, 3, 7.0, 9), (3, 1, 7.0, 4),  # loop, any time order
-           (1, 4, 8.0, 1), (4, 1, 8.0, 2),                   # 2-loop
-           (1, 5, 9.0, 1), (5, 1, 3.0, 2),                   # amounts differ
-           (2, 2, 7.0, 3))                                   # self-loop ignored
+    t = tx(
+        (1, 2, 7.0, 1),
+        (2, 3, 7.0, 9),
+        (3, 1, 7.0, 4),  # loop, any time order
+        (1, 4, 8.0, 1),
+        (4, 1, 8.0, 2),  # 2-loop
+        (1, 5, 9.0, 1),
+        (5, 1, 3.0, 2),  # amounts differ
+        (2, 2, 7.0, 3),
+    )  # self-loop ignored
     assert alg.loops_through(t, 1, 0, 10) == [[1, 2, 3], [1, 4]]
     assert alg.loops_through(t, 1, 0, 8) == [[1, 4]]  # 2->3 at step 9 is outside
 
@@ -77,15 +96,28 @@ def test_loops_through_rejects_revisits_and_long_loops():
 
 
 def test_loops_in_window_canonical_and_lengths():
-    t = tx((5, 3, 2.0, 0), (3, 4, 2.0, 1), (4, 5, 2.0, 2),   # 3-loop -> [3, 4, 5]
-           (1, 2, 4.0, 0), (2, 1, 4.0, 0),                    # 2-loop excluded
-           (7, 8, 6.0, 0), (8, 9, 6.0, 0), (9, 7, 6.0, 30))   # outside window
+    t = tx(
+        (5, 3, 2.0, 0),
+        (3, 4, 2.0, 1),
+        (4, 5, 2.0, 2),  # 3-loop -> [3, 4, 5]
+        (1, 2, 4.0, 0),
+        (2, 1, 4.0, 0),  # 2-loop excluded
+        (7, 8, 6.0, 0),
+        (8, 9, 6.0, 0),
+        (9, 7, 6.0, 30),
+    )  # outside window
     assert alg.loops_in_window(t, 0, 10) == [[3, 4, 5]]
 
 
 def test_loops_within_span():
-    t = tx((1, 2, 3.0, 0), (2, 3, 3.0, 10), (3, 1, 3.0, 5),
-           (1, 4, 3.0, 50), (4, 5, 3.0, 50), (5, 1, 3.0, 61))
+    t = tx(
+        (1, 2, 3.0, 0),
+        (2, 3, 3.0, 10),
+        (3, 1, 3.0, 5),
+        (1, 4, 3.0, 50),
+        (4, 5, 3.0, 50),
+        (5, 1, 3.0, 61),
+    )
     assert alg.loops_within_span(t, 1, 10) == [[1, 2, 3]]  # second loop spans 11
 
 

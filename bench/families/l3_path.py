@@ -31,8 +31,15 @@ class SameAmountChain(Family):
                 row = cycles[cycles.alert_id == pid].iloc[0]
                 x = pick(rng, ctx.members_by_pattern[pid], 1)[0]
                 a = int(row.min_step)
-                out.append({"x": x, "amount": ctx.pattern_amount[pid], "a": a,
-                            "b": a + CHAIN_WINDOW, "k": k})
+                out.append(
+                    {
+                        "x": x,
+                        "amount": ctx.pattern_amount[pid],
+                        "a": a,
+                        "b": a + CHAIN_WINDOW,
+                        "k": k,
+                    }
+                )
             for negative in (False, True):
                 while True:
                     x = pick(rng, plain, 1)[0]

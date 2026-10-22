@@ -19,8 +19,9 @@ class QueryResult:
     db_ms: float
 
 
-def run_sql(conn: psycopg.Connection, query: str, params: dict[str, Any] | None = None
-            ) -> QueryResult:
+def run_sql(
+    conn: psycopg.Connection, query: str, params: dict[str, Any] | None = None
+) -> QueryResult:
     """Execute in a READ ONLY transaction; the connection's role sets statement_timeout."""
     t0 = time.perf_counter()
     try:
@@ -33,8 +34,9 @@ def run_sql(conn: psycopg.Connection, query: str, params: dict[str, Any] | None 
     return QueryResult(rows, db_ms)
 
 
-def run_cypher(session: neo4j.Session, query: str, params: dict[str, Any] | None = None, *,
-               timeout_s: float) -> QueryResult:
+def run_cypher(
+    session: neo4j.Session, query: str, params: dict[str, Any] | None = None, *, timeout_s: float
+) -> QueryResult:
     """Execute in a managed read transaction with a transaction timeout."""
 
     @neo4j.unit_of_work(timeout=timeout_s)

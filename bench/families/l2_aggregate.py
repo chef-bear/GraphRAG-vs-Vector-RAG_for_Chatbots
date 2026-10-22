@@ -44,8 +44,13 @@ class FanInCandidates(Family):
         span = min(FAN_RANGE, ctx.last_step - 5)
         combos = [(lo, cap) for lo in range(ctx.last_step - span + 1) for cap in FAN_CAPS]
         return [
-            {"lo": lo, "hi": lo + span, "width": FAN_WIDTH, "min_senders": FAN_MIN_SENDERS,
-             "cap": cap}
+            {
+                "lo": lo,
+                "hi": lo + span,
+                "width": FAN_WIDTH,
+                "min_senders": FAN_MIN_SENDERS,
+                "cap": cap,
+            }
             for lo, cap in pick(rng, combos, n)
         ]
 

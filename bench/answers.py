@@ -17,7 +17,13 @@ from collections.abc import Iterable
 from typing import Any
 
 ANSWER_TYPES = (
-    "number", "integer", "ordered_list", "set", "bool_set", "set_of_cycles", "set_label",
+    "number",
+    "integer",
+    "ordered_list",
+    "set",
+    "bool_set",
+    "set_of_cycles",
+    "set_label",
 )
 SCHEME_TYPES = ("cycle", "fan_in", "none")
 

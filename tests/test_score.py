@@ -13,25 +13,42 @@ def test_rotate_cycle():
         rotate_cycle([])
 
 
-@pytest.mark.parametrize("answer_type,raw,expected", [
-    ("number", "12.5", 12.5),
-    ("integer", 7.0, 7),
-    ("ordered_list", [3, "1", 2.0], [3, 1, 2]),
-    ("set", [3, 1, 3], [1, 3]),
-    ("bool_set", {"in_loop": True, "accounts": [2, 1]}, {"in_loop": True, "accounts": [1, 2]}),
-    ("set_of_cycles", [[5, 2, 9], [9, 5, 2], [1, 4]], [[1, 4], [2, 9, 5]]),
-    ("set_label", {"accounts": [9, 1], "type": "fan_in"}, {"accounts": [1, 9], "type": "fan_in"}),
-])
+@pytest.mark.parametrize(
+    "answer_type,raw,expected",
+    [
+        ("number", "12.5", 12.5),
+        ("integer", 7.0, 7),
+        ("ordered_list", [3, "1", 2.0], [3, 1, 2]),
+        ("set", [3, 1, 3], [1, 3]),
+        ("bool_set", {"in_loop": True, "accounts": [2, 1]}, {"in_loop": True, "accounts": [1, 2]}),
+        ("set_of_cycles", [[5, 2, 9], [9, 5, 2], [1, 4]], [[1, 4], [2, 9, 5]]),
+        (
+            "set_label",
+            {"accounts": [9, 1], "type": "fan_in"},
+            {"accounts": [1, 9], "type": "fan_in"},
+        ),
+    ],
+)
 def test_canonicalize(answer_type, raw, expected):
     assert canonicalize(answer_type, raw) == expected
 
 
-@pytest.mark.parametrize("answer_type,raw", [
-    ("number", "abc"), ("number", True), ("number", float("nan")),
-    ("integer", 2.5), ("set", 5), ("set", [1, True]), ("ordered_list", ["x"]),
-    ("bool_set", {"in_loop": "yes", "accounts": []}), ("bool_set", {"accounts": []}),
-    ("set_of_cycles", "loops"), ("set_label", {"accounts": [], "type": "ring"}),
-])
+@pytest.mark.parametrize(
+    "answer_type,raw",
+    [
+        ("number", "abc"),
+        ("number", True),
+        ("number", float("nan")),
+        ("integer", 2.5),
+        ("set", 5),
+        ("set", [1, True]),
+        ("ordered_list", ["x"]),
+        ("bool_set", {"in_loop": "yes", "accounts": []}),
+        ("bool_set", {"accounts": []}),
+        ("set_of_cycles", "loops"),
+        ("set_label", {"accounts": [], "type": "ring"}),
+    ],
+)
 def test_canonicalize_rejects(answer_type, raw):
     with pytest.raises(AnswerFormatError):
         canonicalize(answer_type, raw)

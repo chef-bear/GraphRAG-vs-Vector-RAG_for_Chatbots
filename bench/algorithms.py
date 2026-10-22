@@ -35,8 +35,9 @@ def top_receivers(tx: pd.DataFrame, a: int, b: int, n: int) -> list[int]:
     return counts.receiver_id.head(n).astype(int).tolist()
 
 
-def fan_in_candidates(tx: pd.DataFrame, lo: int, hi: int, width: int, min_senders: int,
-                      cap: float) -> list[int]:
+def fan_in_candidates(
+    tx: pd.DataFrame, lo: int, hi: int, width: int, min_senders: int, cap: float
+) -> list[int]:
     """Receivers R with some window [w, w+width-1] inside [lo, hi] in which at least
     `min_senders` distinct accounts each sent R exactly one transfer (any amount), and
     that transfer was below `cap`. Self-transfers are ignored."""
@@ -76,8 +77,7 @@ def time_respecting_reach(tx: pd.DataFrame, x: int, a: int, b: int, k: int) -> l
     """
     w = in_window(tx, a, b)
     out: dict[int, list[tuple[int, int]]] = defaultdict(list)
-    for s, r, st in zip(w.sender_id.tolist(), w.receiver_id.tolist(), w.step.tolist(),
-                        strict=True):
+    for s, r, st in zip(w.sender_id.tolist(), w.receiver_id.tolist(), w.step.tolist(), strict=True):
         out[s].append((r, st))
     arrival = {x: a - 1}
     for _ in range(k):
@@ -94,8 +94,9 @@ def _amount_adjacency(w: pd.DataFrame) -> dict[tuple[int, float], set[int]]:
     """(sender, amount) -> receivers, ignoring self-transfers."""
     w = w[~w.is_self_loop]
     adj: dict[tuple[int, float], set[int]] = defaultdict(set)
-    for s, r, amt in zip(w.sender_id.tolist(), w.receiver_id.tolist(), w.amount.tolist(),
-                         strict=True):
+    for s, r, amt in zip(
+        w.sender_id.tolist(), w.receiver_id.tolist(), w.amount.tolist(), strict=True
+    ):
         adj[(s, amt)].add(r)
     return adj
 
@@ -121,8 +122,9 @@ def loops_through(tx: pd.DataFrame, x: int, a: int, b: int, max_len: int = 5) ->
     return [list(p) for p in sorted(loops)]
 
 
-def loops_in_window(tx: pd.DataFrame, a: int, b: int, min_len: int = 3,
-                    max_len: int = 5) -> list[list[int]]:
+def loops_in_window(
+    tx: pd.DataFrame, a: int, b: int, min_len: int = 3, max_len: int = 5
+) -> list[list[int]]:
     """All simple directed loops of min_len..max_len transfers with identical amounts,
     every transfer within [a, b]. Each loop starts at its smallest account_id."""
     w = in_window(tx, a, b)
@@ -144,14 +146,20 @@ def loops_in_window(tx: pd.DataFrame, a: int, b: int, min_len: int = 3,
     return [list(p) for p in sorted(loops)]
 
 
-def loops_within_span(tx: pd.DataFrame, x: int, span: int, min_len: int = 3,
-                      max_len: int = 5) -> list[list[int]]:
+def loops_within_span(
+    tx: pd.DataFrame, x: int, span: int, min_len: int = 3, max_len: int = 5
+) -> list[list[int]]:
     """Simple loops through x of min_len..max_len transfers with identical amounts whose
     steps satisfy max(step) - min(step) <= span. No fixed window. Loops start at x."""
     w = tx[~tx.is_self_loop]
     adj: dict[tuple[int, float], list[tuple[int, int]]] = defaultdict(list)
-    for s, r, amt, st in zip(w.sender_id.tolist(), w.receiver_id.tolist(), w.amount.tolist(),
-                             w.step.tolist(), strict=True):
+    for s, r, amt, st in zip(
+        w.sender_id.tolist(),
+        w.receiver_id.tolist(),
+        w.amount.tolist(),
+        w.step.tolist(),
+        strict=True,
+    ):
         adj[(s, amt)].append((r, st))
     loops: set[tuple[int, ...]] = set()
 
@@ -166,14 +174,22 @@ def loops_within_span(tx: pd.DataFrame, x: int, span: int, min_len: int = 3,
                 extend([*path, r], amt, lo2, hi2)
 
     first = w[w.sender_id == x]
-    for r, amt, st in zip(first.receiver_id.tolist(), first.amount.tolist(), first.step.tolist(),
-                          strict=True):
+    for r, amt, st in zip(
+        first.receiver_id.tolist(), first.amount.tolist(), first.step.tolist(), strict=True
+    ):
         extend([x, r], amt, st, st)
     return [list(p) for p in sorted(loops)]
 
 
-def scheme_members(tx: pd.DataFrame, x: int, *, cycle_span: int, fan_width: int,
-                   fan_min_senders: int, fan_cap: float) -> dict[str, list[int]]:
+def scheme_members(
+    tx: pd.DataFrame,
+    x: int,
+    *,
+    cycle_span: int,
+    fan_width: int,
+    fan_min_senders: int,
+    fan_cap: float,
+) -> dict[str, list[int]]:
     """The L5 detection rule stated in the ring prompts, by scheme type.
 
     cycle:  accounts on simple loops of 3..5 transfers through x with identical amounts

@@ -31,16 +31,23 @@ TYPOLOGY = (
 
 def detect(ctx, x: int) -> dict[str, list[int]]:
     return alg.scheme_members(
-        ctx.tx, x, cycle_span=CYCLE_SPAN, fan_width=FAN_WIDTH,
-        fan_min_senders=FAN_MIN_SENDERS, fan_cap=FAN_CAP,
+        ctx.tx,
+        x,
+        cycle_span=CYCLE_SPAN,
+        fan_width=FAN_WIDTH,
+        fan_min_senders=FAN_MIN_SENDERS,
+        fan_cap=FAN_CAP,
     )
 
 
 def _clean(ctx) -> set[int]:
     """Patterns the typology describes: closed cycles and 4-sender fan-ins."""
     p = ctx.patterns
-    return set(p[p.is_closed_cycle | ((p.alert_type == "fan_in") & (p.n_senders == 4))]
-               .alert_id.astype(int))
+    return set(
+        p[p.is_closed_cycle | ((p.alert_type == "fan_in") & (p.n_senders == 4))].alert_id.astype(
+            int
+        )
+    )
 
 
 def _types(ctx, x: int) -> set[str]:
@@ -58,7 +65,9 @@ class _Ring(Family):
 
     def query_params(self, p):
         return super().query_params(p) | {
-            "span": CYCLE_SPAN, "width": FAN_WIDTH, "min_senders": FAN_MIN_SENDERS,
+            "span": CYCLE_SPAN,
+            "width": FAN_WIDTH,
+            "min_senders": FAN_MIN_SENDERS,
             "cap": FAN_CAP,
         }
 
@@ -76,8 +85,9 @@ class _Ring(Family):
             if solvable(x):
                 kept.append(x)
         self.stats["tried"] = self.stats.get("tried", 0) + tried
-        self.stats["unsolvable_dropped"] = self.stats.get("unsolvable_dropped", 0) + tried - len(
-            kept)
+        self.stats["unsolvable_dropped"] = (
+            self.stats.get("unsolvable_dropped", 0) + tried - len(kept)
+        )
         return kept
 
     def _negatives(self, ctx, rng) -> list[int]:
@@ -104,8 +114,13 @@ class RingFromSeed(_Ring):
 
     def sample(self, ctx, rng, n):
         self.stats = {}
-        pos = self._draw(ctx, rng, self._positive_pool(ctx), n - self.n_negatives,
-                         lambda x: self._matches_labels(ctx, x))
+        pos = self._draw(
+            ctx,
+            rng,
+            self._positive_pool(ctx),
+            n - self.n_negatives,
+            lambda x: self._matches_labels(ctx, x),
+        )
         neg = self._negatives(ctx, rng)
         return [{"x": x} for x in pos] + [{"x": x, "negative_control": True} for x in neg]
 
@@ -145,7 +160,7 @@ class RingType(_Ring):
         return (
             f"Account {p['x']} has been flagged for review.\n{TYPOLOGY}\n"
             f"Return every account in the scheme account {p['x']} is part of (including "
-            f"{p['x']}) and classify the scheme as \"cycle\" or \"fan_in\". If it is part of no "
+            f'{p["x"]}) and classify the scheme as "cycle" or "fan_in". If it is part of no '
             'scheme, return an empty list with type "none".'
         )
 

@@ -44,16 +44,24 @@ def generate(ctx: Context, seed: int) -> list[dict[str, Any]]:
         if len(params) < n:
             log.warning("%s: only %d of %d instances available", family.name, len(params), n)
         for i, p in enumerate(params):
-            tasks.append({
-                "task_id": f"{ctx.scale}-{family.name}-{i:03d}",
-                "level": family.level,
-                "family": family.name,
-                "params": {k: v for k, v in p.items() if k != "negative_control"},
-                "prompt": family.prompt(p),
-                "answer_type": family.answer_type,
-                "ground_truth": family.ground_truth(ctx, p),
-                "negative_control": bool(p.get("negative_control", False)),
-            })
+            truth = family.ground_truth(ctx, p)
+            negative = bool(p.get("negative_control", False))
+            if negative and answer_size(family.answer_type, truth):
+                # sampled as a negative but the data has an answer: keep it as a positive
+                log.warning("%s #%d: negative control has a non-empty answer", family.name, i)
+                negative = False
+            tasks.append(
+                {
+                    "task_id": f"{ctx.scale}-{family.name}-{i:03d}",
+                    "level": family.level,
+                    "family": family.name,
+                    "params": {k: v for k, v in p.items() if k != "negative_control"},
+                    "prompt": family.prompt(p),
+                    "answer_type": family.answer_type,
+                    "ground_truth": truth,
+                    "negative_control": negative,
+                }
+            )
         if getattr(family, "stats", None):
             log.info("%s: %s", family.name, family.stats)
     return tasks
@@ -62,8 +70,9 @@ def generate(ctx: Context, seed: int) -> list[dict[str, Any]]:
 def summarize(tasks: list[dict[str, Any]]) -> dict[str, Any]:
     by_family: dict[str, Any] = {}
     for t in tasks:
-        f = by_family.setdefault(t["family"], {"level": t["level"], "n": 0, "negative_controls": 0,
-                                               "sizes": []})
+        f = by_family.setdefault(
+            t["family"], {"level": t["level"], "n": 0, "negative_controls": 0, "sizes": []}
+        )
         f["n"] += 1
         f["negative_controls"] += t["negative_control"]
         size = answer_size(t["answer_type"], t["ground_truth"])
@@ -72,8 +81,12 @@ def summarize(tasks: list[dict[str, Any]]) -> dict[str, Any]:
     for f in by_family.values():
         sizes = f.pop("sizes")
         if sizes:
-            f.update(size_min=min(sizes), size_median=float(np.median(sizes)),
-                     size_max=max(sizes), empty=sum(s == 0 for s in sizes))
+            f.update(
+                size_min=min(sizes),
+                size_median=float(np.median(sizes)),
+                size_max=max(sizes),
+                empty=sum(s == 0 for s in sizes),
+            )
     return {
         "n_tasks": len(tasks),
         "by_level": dict(sorted(Counter(t["level"] for t in tasks).items())),

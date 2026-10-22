@@ -80,7 +80,8 @@ def main(argv: list[str] | None = None) -> int:
                 lambda q, prm: run_cypher(session, q, prm, timeout_s=settings.query_timeout_s),
             )
             (log.info if r["ok"] else log.error)(
-                "%-40s pg=%s neo4j=%s", r["task_id"],
+                "%-40s pg=%s neo4j=%s",
+                r["task_id"],
                 r["postgres"].get("db_ms", r["postgres"].get("error")),
                 r["neo4j"].get("db_ms", r["neo4j"].get("error")),
             )
@@ -88,12 +89,23 @@ def main(argv: list[str] | None = None) -> int:
 
     failed = [r for r in results if not r["ok"]]
     report = settings.reports_dir / f"verify_{args.scale}.json"
-    report.write_text(json.dumps({
-        "scale": args.scale, "n": len(results), "agree": len(results) - len(failed),
-        "failed": failed, "results": results,
-    }, indent=2, default=str) + "\n")
-    log.info("%d/%d tasks agree three ways; report: %s", len(results) - len(failed),
-             len(results), report)
+    report.write_text(
+        json.dumps(
+            {
+                "scale": args.scale,
+                "n": len(results),
+                "agree": len(results) - len(failed),
+                "failed": failed,
+                "results": results,
+            },
+            indent=2,
+            default=str,
+        )
+        + "\n"
+    )
+    log.info(
+        "%d/%d tasks agree three ways; report: %s", len(results) - len(failed), len(results), report
+    )
     return 1 if failed else 0
 
 

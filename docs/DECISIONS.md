@@ -32,3 +32,23 @@ Format: date — decision. *Why.* Alternatives considered.
 ## Findings to carry into Phase 2
 
 - **Amount tails grow over simulated time.** The median amount is about 156 in every step band. But non-sentinel amounts above 1e6 only appear from step 78, and the 3,053 sentinel amounts only in steps 149–199. So s25, s50 and s100 contain **no sentinel rows**, and the `missing_sentinel_exclusion` failure class can only happen at `full`. Phase 2 task design and the RQ4 analysis need to account for this.
+
+## Phase 2
+
+- **2026-10-22 — Task plan: 116 instances per scale.** L1 20, L2 20, L3 36 (9 per k for k = 2–5), L4 20, L5 20. 16 of them (13.8%) are negative controls, against the spec's "about 15%". Negatives only make sense where there's a seed account (L3 `same_amount_chain_k`, L4 `cycle_membership`, L5). The generator re-checks each one: a sampled negative whose answer turns out non-empty is kept as a positive, with a warning.
+- **2026-10-22 — `fan_in_candidates` uses a 7-step window and an amount cap (5 or 10).** The spec's literal wording ("≥4 distinct senders each sending exactly one transfer within a 10-step window") matches about 5,000 of the 10,000 accounts. Background senders send about one transfer per pair per 10 steps, so the clause isn't distinctive. With the cap, answers have 3–104 accounts. With cap 5 the rule is fraud-precise (70 of 70 at `full`). The range is 30 steps, shrunk at s25 so window starts can still vary.
+- **2026-10-22 — L5 prompts state the scheme typology explicitly**: cycle = a same-amount loop of 3–5 accounts within 11 steps; fan-in = at least 4 senders each sending under 5.00 to one receiver within 7 steps. Without it, "investigate the scheme" can't be answered from data that has no labels. The rule reproduces the label-derived ring exactly for 100% of eligible seeds (121 at s25, 319 at s50). A cap of 10 would only manage 71–78%. The generator still keeps only seeds where the rule matches the labels, so every L5 instance is solvable from the DB. So far it has never had to drop one.
+- **2026-10-22 — L5 seeds come from "clean" patterns only:** closed cycles and fan-ins with exactly 4 senders. The 9 incomplete cycles and 9 fan-ins with fewer senders don't fit the typology. Negative seeds are accounts in no pattern and not flagged as fraud. `ring_type` positives are accounts whose patterns are all of one type, 3 cycle and 2 fan-in.
+- **2026-10-22 — Overlap accounts use union ground truth (default in §11.5).** For seeds in several patterns, the answer is the union of all their patterns' members. This needs the user's confirmation at Checkpoint 2.
+- **2026-10-22 — Semantics pinned in the prompts:**
+  - every step range is inclusive
+  - transfers follow the direction money moves
+  - `same_amount_chain_k` and `cycle_membership` allow any time order
+  - `time_respecting_reach_k` requires *strictly* increasing steps
+  - loops are simple (no repeated account) and ignore self-transfers
+  - `top_receivers` breaks ties by smaller account_id and ignores self-transfers
+  - `acct_counterparties` excludes the account itself
+  - reachability answers exclude the start account
+- **2026-10-22 — Windows and starts are drawn without replacement**, so a scale never contains duplicate instances. `cycle_enumeration_window` shrinks its 20-step window at s25 for the same reason.
+- **2026-10-22 — Reference queries run under agent constraints.** Verification runs SQL as the read-only `fraud_agent` role (30 s statement timeout) and Cypher in `execute_read` with a 30 s timeout, through the same `core/readonly.py` the agent will use. A reference that only works with admin rights or no timeout would fail verification.
+- **2026-10-22 — Neo4j 5.26 quirk.** A list comprehension over a variable-length relationship list (`[t IN ts | t.step]`), when concatenated with another list, gets type-inferred as booleans and fails with a confusing "Type mismatch". The workaround is to build `[t0] + ts` first and comprehend over that. This is worth watching for in RQ3: agents writing Cypher may hit the same error.
