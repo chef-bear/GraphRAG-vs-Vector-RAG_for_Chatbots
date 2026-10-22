@@ -26,7 +26,7 @@
         "kind": "checksum",
         "neo4j": 21464466.0,
         "ok": true,
-        "postgres": 21464466.0,
+        "postgres": 21464466,
         "staged": 21464466.0
       },
       "amount_sum_non_sentinel": {
@@ -82,12 +82,12 @@
         "kind": "checksum",
         "neo4j": 79804356774351,
         "ok": true,
-        "postgres": 79804356774351.0,
+        "postgres": 79804356774351,
         "staged": 79804356774351
       },
       "init_balance_sum": {
         "kind": "checksum",
-        "neo4j": 2801186.3299999908,
+        "neo4j": 2801186.329999988,
         "ok": true,
         "postgres": 2801186.33,
         "staged": 2801186.33
@@ -152,14 +152,14 @@
         "kind": "checksum",
         "neo4j": 875474770995,
         "ok": true,
-        "postgres": 875474770995.0,
+        "postgres": 875474770995,
         "staged": 875474770995
       },
       "tx_step_checksum": {
         "kind": "checksum",
         "neo4j": 116605391887125,
         "ok": true,
-        "postgres": 116605391887125.0,
+        "postgres": 116605391887125,
         "staged": 116605391887125
       },
       "window_small_amounts": {
@@ -255,12 +255,12 @@
         "kind": "checksum",
         "neo4j": 39666237967632,
         "ok": true,
-        "postgres": 39666237967632.0,
+        "postgres": 39666237967632,
         "staged": 39666237967632
       },
       "init_balance_sum": {
         "kind": "checksum",
-        "neo4j": 2801186.3299999908,
+        "neo4j": 2801186.329999993,
         "ok": true,
         "postgres": 2801186.33,
         "staged": 2801186.33
@@ -325,14 +325,14 @@
         "kind": "checksum",
         "neo4j": 216193563141,
         "ok": true,
-        "postgres": 216193563141.0,
+        "postgres": 216193563141,
         "staged": 216193563141
       },
       "tx_step_checksum": {
         "kind": "checksum",
         "neo4j": 14351033234484,
         "ok": true,
-        "postgres": 14351033234484.0,
+        "postgres": 14351033234484,
         "staged": 14351033234484
       },
       "window_small_amounts": {
