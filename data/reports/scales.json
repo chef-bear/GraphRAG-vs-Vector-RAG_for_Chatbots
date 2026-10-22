@@ -1,0 +1,34 @@
+{
+  "full": {
+    "patterns": 391,
+    "patterns_by_type": {
+      "cycle": 192,
+      "fan_in": 199
+    },
+    "transactions": 1323234
+  },
+  "s100": {
+    "patterns": 196,
+    "patterns_by_type": {
+      "cycle": 97,
+      "fan_in": 99
+    },
+    "transactions": 657561
+  },
+  "s25": {
+    "patterns": 39,
+    "patterns_by_type": {
+      "cycle": 16,
+      "fan_in": 23
+    },
+    "transactions": 160480
+  },
+  "s50": {
+    "patterns": 91,
+    "patterns_by_type": {
+      "cycle": 44,
+      "fan_in": 47
+    },
+    "transactions": 326374
+  }
+}
