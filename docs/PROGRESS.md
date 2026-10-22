@@ -23,7 +23,18 @@ _Last updated: 2026-10-22_
 
 Current DB state: Postgres has `fraud_s25`, `fraud_s50`, `fraud_s100` and `fraud_full`. Neo4j holds **full**.
 
-## Phase 2: Ground truth and tasks ⏳
+## Phase 2: Ground truth and tasks ✅ (awaiting Checkpoint 2 review)
+- [x] `bench/answers.py` + `bench/score.py`: 7 answer types, canonical forms, every §6.2 rule (unit-tested per type)
+- [x] `bench/algorithms.py`: Python ground truth (pandas, no DB), unit-tested on hand-built graphs
+- [x] `bench/families/`: 10 families across 5 levels; L5 seeds kept only if the stated typology reproduces the labels
+- [x] `bench/reference/`: SQL + Cypher for every family (L5 families share `ring.*`)
+- [x] `bench/generate.py` (`make gen-tasks`): 116 tasks per scale, 16 negative controls, deterministic, no duplicates
+- [x] `bench/verify.py` (`make verify-gt SCALE=...`): **116/116 three-way agreement at all 4 scales** (acceptance only needed s50)
+- [x] `make test` 120 passed; `make test-integration` 9 passed (at full); lint clean
+- [ ] 🛑 Checkpoint 2: user review of samples; decide §11.4 (watchlist) and §11.5 (union ground truth)
+
+Current DB state: Neo4j holds **full**.
+
 ## Phase 3: Agent and Ollama ⏳
 - [ ] User installs Ollama on Windows
 ## Phase 4: Full runs ⏳
