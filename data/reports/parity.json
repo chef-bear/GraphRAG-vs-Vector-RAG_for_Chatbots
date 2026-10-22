@@ -1,0 +1,694 @@
+{
+  "full": {
+    "checks": {
+      "accounts": {
+        "kind": "count",
+        "neo4j": 10000,
+        "ok": true,
+        "postgres": 10000,
+        "staged": 10000
+      },
+      "accounts_without_outgoing": {
+        "kind": "checksum",
+        "neo4j": 1,
+        "ok": true,
+        "postgres": 1,
+        "staged": 1
+      },
+      "amount_gt_1e6": {
+        "kind": "checksum",
+        "neo4j": 15911,
+        "ok": true,
+        "postgres": 15911,
+        "staged": 15911
+      },
+      "amount_max_non_sentinel": {
+        "kind": "checksum",
+        "neo4j": 21464466.0,
+        "ok": true,
+        "postgres": 21464466.0,
+        "staged": 21464466.0
+      },
+      "amount_sum_non_sentinel": {
+        "kind": "checksum",
+        "neo4j": 87916830462.06894,
+        "ok": true,
+        "postgres": 87916830462.07,
+        "staged": 87916830462.06999
+      },
+      "amount_zero": {
+        "kind": "checksum",
+        "neo4j": 19,
+        "ok": true,
+        "postgres": 19,
+        "staged": 19
+      },
+      "behavior_id_sum": {
+        "kind": "checksum",
+        "neo4j": 30000,
+        "ok": true,
+        "postgres": 30000,
+        "staged": 30000
+      },
+      "distinct_customers": {
+        "kind": "checksum",
+        "neo4j": 10000,
+        "ok": true,
+        "postgres": 10000,
+        "staged": 10000
+      },
+      "distinct_pairs": {
+        "kind": "checksum",
+        "neo4j": 68947,
+        "ok": true,
+        "postgres": 68947,
+        "staged": 68947
+      },
+      "distinct_receivers": {
+        "kind": "checksum",
+        "neo4j": 9926,
+        "ok": true,
+        "postgres": 9926,
+        "staged": 9926
+      },
+      "distinct_senders": {
+        "kind": "checksum",
+        "neo4j": 9999,
+        "ok": true,
+        "postgres": 9999,
+        "staged": 9999
+      },
+      "endpoint_checksum": {
+        "kind": "checksum",
+        "neo4j": 79804356774351,
+        "ok": true,
+        "postgres": 79804356774351.0,
+        "staged": 79804356774351
+      },
+      "init_balance_sum": {
+        "kind": "checksum",
+        "neo4j": 2801186.3299999908,
+        "ok": true,
+        "postgres": 2801186.33,
+        "staged": 2801186.33
+      },
+      "max_out_degree": {
+        "kind": "checksum",
+        "neo4j": 963,
+        "ok": true,
+        "postgres": 963,
+        "staged": 963
+      },
+      "reciprocal_pairs": {
+        "kind": "checksum",
+        "neo4j": 3077,
+        "ok": true,
+        "postgres": 3077,
+        "staged": 3077
+      },
+      "self_loop_count": {
+        "kind": "checksum",
+        "neo4j": 181,
+        "ok": true,
+        "postgres": 181,
+        "staged": 181
+      },
+      "sentinel_count": {
+        "kind": "checksum",
+        "neo4j": 3053,
+        "ok": true,
+        "postgres": 3053,
+        "staged": 3053
+      },
+      "step_max": {
+        "kind": "checksum",
+        "neo4j": 199,
+        "ok": true,
+        "postgres": 199,
+        "staged": 199
+      },
+      "step_min": {
+        "kind": "checksum",
+        "neo4j": 0,
+        "ok": true,
+        "postgres": 0,
+        "staged": 0
+      },
+      "step_sum": {
+        "kind": "checksum",
+        "neo4j": 132294637,
+        "ok": true,
+        "postgres": 132294637,
+        "staged": 132294637
+      },
+      "transactions": {
+        "kind": "count",
+        "neo4j": 1323234,
+        "ok": true,
+        "postgres": 1323234,
+        "staged": 1323234
+      },
+      "tx_id_sum": {
+        "kind": "checksum",
+        "neo4j": 875474770995,
+        "ok": true,
+        "postgres": 875474770995.0,
+        "staged": 875474770995
+      },
+      "tx_step_checksum": {
+        "kind": "checksum",
+        "neo4j": 116605391887125,
+        "ok": true,
+        "postgres": 116605391887125.0,
+        "staged": 116605391887125
+      },
+      "window_small_amounts": {
+        "kind": "checksum",
+        "neo4j": 21153,
+        "ok": true,
+        "postgres": 21153,
+        "staged": 21153
+      }
+    },
+    "ok": true
+  },
+  "s100": {
+    "checks": {
+      "accounts": {
+        "kind": "count",
+        "neo4j": 10000,
+        "ok": true,
+        "postgres": 10000,
+        "staged": 10000
+      },
+      "accounts_without_outgoing": {
+        "kind": "checksum",
+        "neo4j": 1,
+        "ok": true,
+        "postgres": 1,
+        "staged": 1
+      },
+      "amount_gt_1e6": {
+        "kind": "checksum",
+        "neo4j": 68,
+        "ok": true,
+        "postgres": 68,
+        "staged": 68
+      },
+      "amount_max_non_sentinel": {
+        "kind": "checksum",
+        "neo4j": 2170323.25,
+        "ok": true,
+        "postgres": 2170323.25,
+        "staged": 2170323.25
+      },
+      "amount_sum_non_sentinel": {
+        "kind": "checksum",
+        "neo4j": 2108158141.5599306,
+        "ok": true,
+        "postgres": 2108158141.56,
+        "staged": 2108158141.5600002
+      },
+      "amount_zero": {
+        "kind": "checksum",
+        "neo4j": 19,
+        "ok": true,
+        "postgres": 19,
+        "staged": 19
+      },
+      "behavior_id_sum": {
+        "kind": "checksum",
+        "neo4j": 30000,
+        "ok": true,
+        "postgres": 30000,
+        "staged": 30000
+      },
+      "distinct_customers": {
+        "kind": "checksum",
+        "neo4j": 10000,
+        "ok": true,
+        "postgres": 10000,
+        "staged": 10000
+      },
+      "distinct_pairs": {
+        "kind": "checksum",
+        "neo4j": 64320,
+        "ok": true,
+        "postgres": 64320,
+        "staged": 64320
+      },
+      "distinct_receivers": {
+        "kind": "checksum",
+        "neo4j": 9875,
+        "ok": true,
+        "postgres": 9875,
+        "staged": 9875
+      },
+      "distinct_senders": {
+        "kind": "checksum",
+        "neo4j": 9999,
+        "ok": true,
+        "postgres": 9999,
+        "staged": 9999
+      },
+      "endpoint_checksum": {
+        "kind": "checksum",
+        "neo4j": 39666237967632,
+        "ok": true,
+        "postgres": 39666237967632.0,
+        "staged": 39666237967632
+      },
+      "init_balance_sum": {
+        "kind": "checksum",
+        "neo4j": 2801186.3299999908,
+        "ok": true,
+        "postgres": 2801186.33,
+        "staged": 2801186.33
+      },
+      "max_out_degree": {
+        "kind": "checksum",
+        "neo4j": 481,
+        "ok": true,
+        "postgres": 481,
+        "staged": 481
+      },
+      "reciprocal_pairs": {
+        "kind": "checksum",
+        "neo4j": 2672,
+        "ok": true,
+        "postgres": 2672,
+        "staged": 2672
+      },
+      "self_loop_count": {
+        "kind": "checksum",
+        "neo4j": 90,
+        "ok": true,
+        "postgres": 90,
+        "staged": 90
+      },
+      "sentinel_count": {
+        "kind": "checksum",
+        "neo4j": 0,
+        "ok": true,
+        "postgres": 0,
+        "staged": 0
+      },
+      "step_max": {
+        "kind": "checksum",
+        "neo4j": 99,
+        "ok": true,
+        "postgres": 99,
+        "staged": 99
+      },
+      "step_min": {
+        "kind": "checksum",
+        "neo4j": 0,
+        "ok": true,
+        "postgres": 0,
+        "staged": 0
+      },
+      "step_sum": {
+        "kind": "checksum",
+        "neo4j": 32778972,
+        "ok": true,
+        "postgres": 32778972,
+        "staged": 32778972
+      },
+      "transactions": {
+        "kind": "count",
+        "neo4j": 657561,
+        "ok": true,
+        "postgres": 657561,
+        "staged": 657561
+      },
+      "tx_id_sum": {
+        "kind": "checksum",
+        "neo4j": 216193563141,
+        "ok": true,
+        "postgres": 216193563141.0,
+        "staged": 216193563141
+      },
+      "tx_step_checksum": {
+        "kind": "checksum",
+        "neo4j": 14351033234484,
+        "ok": true,
+        "postgres": 14351033234484.0,
+        "staged": 14351033234484
+      },
+      "window_small_amounts": {
+        "kind": "checksum",
+        "neo4j": 21153,
+        "ok": true,
+        "postgres": 21153,
+        "staged": 21153
+      }
+    },
+    "ok": true
+  },
+  "s25": {
+    "checks": {
+      "accounts": {
+        "kind": "count",
+        "neo4j": 10000,
+        "ok": true,
+        "postgres": 10000,
+        "staged": 10000
+      },
+      "accounts_without_outgoing": {
+        "kind": "checksum",
+        "neo4j": 471,
+        "ok": true,
+        "postgres": 471,
+        "staged": 471
+      },
+      "amount_gt_1e6": {
+        "kind": "checksum",
+        "neo4j": 0,
+        "ok": true,
+        "postgres": 0,
+        "staged": 0
+      },
+      "amount_max_non_sentinel": {
+        "kind": "checksum",
+        "neo4j": 60947.46,
+        "ok": true,
+        "postgres": 60947.46,
+        "staged": 60947.46
+      },
+      "amount_sum_non_sentinel": {
+        "kind": "checksum",
+        "neo4j": 53696476.24000318,
+        "ok": true,
+        "postgres": 53696476.24,
+        "staged": 53696476.24000001
+      },
+      "amount_zero": {
+        "kind": "checksum",
+        "neo4j": 18,
+        "ok": true,
+        "postgres": 18,
+        "staged": 18
+      },
+      "behavior_id_sum": {
+        "kind": "checksum",
+        "neo4j": 30000,
+        "ok": true,
+        "postgres": 30000,
+        "staged": 30000
+      },
+      "distinct_customers": {
+        "kind": "checksum",
+        "neo4j": 10000,
+        "ok": true,
+        "postgres": 10000,
+        "staged": 10000
+      },
+      "distinct_pairs": {
+        "kind": "checksum",
+        "neo4j": 51270,
+        "ok": true,
+        "postgres": 51270,
+        "staged": 51270
+      },
+      "distinct_receivers": {
+        "kind": "checksum",
+        "neo4j": 9696,
+        "ok": true,
+        "postgres": 9696,
+        "staged": 9696
+      },
+      "distinct_senders": {
+        "kind": "checksum",
+        "neo4j": 9529,
+        "ok": true,
+        "postgres": 9529,
+        "staged": 9529
+      },
+      "endpoint_checksum": {
+        "kind": "checksum",
+        "neo4j": 9699060456532,
+        "ok": true,
+        "postgres": 9699060456532,
+        "staged": 9699060456532
+      },
+      "init_balance_sum": {
+        "kind": "checksum",
+        "neo4j": 2801186.3299999908,
+        "ok": true,
+        "postgres": 2801186.33,
+        "staged": 2801186.33
+      },
+      "max_out_degree": {
+        "kind": "checksum",
+        "neo4j": 145,
+        "ok": true,
+        "postgres": 145,
+        "staged": 145
+      },
+      "reciprocal_pairs": {
+        "kind": "checksum",
+        "neo4j": 1914,
+        "ok": true,
+        "postgres": 1914,
+        "staged": 1914
+      },
+      "self_loop_count": {
+        "kind": "checksum",
+        "neo4j": 20,
+        "ok": true,
+        "postgres": 20,
+        "staged": 20
+      },
+      "sentinel_count": {
+        "kind": "checksum",
+        "neo4j": 0,
+        "ok": true,
+        "postgres": 0,
+        "staged": 0
+      },
+      "step_max": {
+        "kind": "checksum",
+        "neo4j": 24,
+        "ok": true,
+        "postgres": 24,
+        "staged": 24
+      },
+      "step_min": {
+        "kind": "checksum",
+        "neo4j": 0,
+        "ok": true,
+        "postgres": 0,
+        "staged": 0
+      },
+      "step_sum": {
+        "kind": "checksum",
+        "neo4j": 1980860,
+        "ok": true,
+        "postgres": 1980860,
+        "staged": 1980860
+      },
+      "transactions": {
+        "kind": "count",
+        "neo4j": 160480,
+        "ok": true,
+        "postgres": 160480,
+        "staged": 160480
+      },
+      "tx_id_sum": {
+        "kind": "checksum",
+        "neo4j": 12876995440,
+        "ok": true,
+        "postgres": 12876995440,
+        "staged": 12876995440
+      },
+      "tx_step_checksum": {
+        "kind": "checksum",
+        "neo4j": 211262667370,
+        "ok": true,
+        "postgres": 211262667370,
+        "staged": 211262667370
+      },
+      "window_small_amounts": {
+        "kind": "checksum",
+        "neo4j": 21153,
+        "ok": true,
+        "postgres": 21153,
+        "staged": 21153
+      }
+    },
+    "ok": true
+  },
+  "s50": {
+    "checks": {
+      "accounts": {
+        "kind": "count",
+        "neo4j": 10000,
+        "ok": true,
+        "postgres": 10000,
+        "staged": 10000
+      },
+      "accounts_without_outgoing": {
+        "kind": "checksum",
+        "neo4j": 28,
+        "ok": true,
+        "postgres": 28,
+        "staged": 28
+      },
+      "amount_gt_1e6": {
+        "kind": "checksum",
+        "neo4j": 0,
+        "ok": true,
+        "postgres": 0,
+        "staged": 0
+      },
+      "amount_max_non_sentinel": {
+        "kind": "checksum",
+        "neo4j": 183644.01,
+        "ok": true,
+        "postgres": 183644.01,
+        "staged": 183644.01
+      },
+      "amount_sum_non_sentinel": {
+        "kind": "checksum",
+        "neo4j": 205447400.27001023,
+        "ok": true,
+        "postgres": 205447400.27,
+        "staged": 205447400.26999998
+      },
+      "amount_zero": {
+        "kind": "checksum",
+        "neo4j": 19,
+        "ok": true,
+        "postgres": 19,
+        "staged": 19
+      },
+      "behavior_id_sum": {
+        "kind": "checksum",
+        "neo4j": 30000,
+        "ok": true,
+        "postgres": 30000,
+        "staged": 30000
+      },
+      "distinct_customers": {
+        "kind": "checksum",
+        "neo4j": 10000,
+        "ok": true,
+        "postgres": 10000,
+        "staged": 10000
+      },
+      "distinct_pairs": {
+        "kind": "checksum",
+        "neo4j": 57687,
+        "ok": true,
+        "postgres": 57687,
+        "staged": 57687
+      },
+      "distinct_receivers": {
+        "kind": "checksum",
+        "neo4j": 9797,
+        "ok": true,
+        "postgres": 9797,
+        "staged": 9797
+      },
+      "distinct_senders": {
+        "kind": "checksum",
+        "neo4j": 9972,
+        "ok": true,
+        "postgres": 9972,
+        "staged": 9972
+      },
+      "endpoint_checksum": {
+        "kind": "checksum",
+        "neo4j": 19699003158214,
+        "ok": true,
+        "postgres": 19699003158214,
+        "staged": 19699003158214
+      },
+      "init_balance_sum": {
+        "kind": "checksum",
+        "neo4j": 2801186.329999993,
+        "ok": true,
+        "postgres": 2801186.33,
+        "staged": 2801186.33
+      },
+      "max_out_degree": {
+        "kind": "checksum",
+        "neo4j": 241,
+        "ok": true,
+        "postgres": 241,
+        "staged": 241
+      },
+      "reciprocal_pairs": {
+        "kind": "checksum",
+        "neo4j": 2294,
+        "ok": true,
+        "postgres": 2294,
+        "staged": 2294
+      },
+      "self_loop_count": {
+        "kind": "checksum",
+        "neo4j": 44,
+        "ok": true,
+        "postgres": 44,
+        "staged": 44
+      },
+      "sentinel_count": {
+        "kind": "checksum",
+        "neo4j": 0,
+        "ok": true,
+        "postgres": 0,
+        "staged": 0
+      },
+      "step_max": {
+        "kind": "checksum",
+        "neo4j": 49,
+        "ok": true,
+        "postgres": 49,
+        "staged": 49
+      },
+      "step_min": {
+        "kind": "checksum",
+        "neo4j": 0,
+        "ok": true,
+        "postgres": 0,
+        "staged": 0
+      },
+      "step_sum": {
+        "kind": "checksum",
+        "neo4j": 8124977,
+        "ok": true,
+        "postgres": 8124977,
+        "staged": 8124977
+      },
+      "transactions": {
+        "kind": "count",
+        "neo4j": 326374,
+        "ok": true,
+        "postgres": 326374,
+        "staged": 326374
+      },
+      "tx_id_sum": {
+        "kind": "checksum",
+        "neo4j": 53260157125,
+        "ok": true,
+        "postgres": 53260157125,
+        "staged": 53260157125
+      },
+      "tx_step_checksum": {
+        "kind": "checksum",
+        "neo4j": 1763996681512,
+        "ok": true,
+        "postgres": 1763996681512,
+        "staged": 1763996681512
+      },
+      "window_small_amounts": {
+        "kind": "checksum",
+        "neo4j": 21153,
+        "ok": true,
+        "postgres": 21153,
+        "staged": 21153
+      }
+    },
+    "ok": true
+  }
+}

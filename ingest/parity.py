@@ -211,7 +211,8 @@ def normalize(value: Any) -> Number | None:
     if value is None:
         return None
     if isinstance(value, Decimal):
-        return float(value)
+        # Postgres returns sum(bigint) as NUMERIC; keep whole numbers exact
+        return int(value) if value == value.to_integral_value() else float(value)
     if isinstance(value, bool):
         return int(value)
     return value

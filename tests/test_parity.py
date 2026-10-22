@@ -31,6 +31,8 @@ def test_values_match():
 
 def test_normalize():
     assert normalize(Decimal("2.50")) == 2.5
+    big = normalize(Decimal("875474770995"))
+    assert big == 875474770995 and isinstance(big, int)
     assert normalize(True) == 1
 
 
