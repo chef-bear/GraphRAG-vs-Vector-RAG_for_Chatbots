@@ -1,6 +1,24 @@
+# secrets / envs
 .env
-venv/
 .venv/
+venv/
+
+# python
 __pycache__/
 *.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# editor
 .vscode/
+
+# data: only the small JSON reports are tracked
+data/raw/
+data/staged/
+data/reports/*
+!data/reports/*.json
+
+# results: only small summary CSVs are tracked
+results/*
+!results/summary/
