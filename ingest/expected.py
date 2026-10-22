@@ -1,0 +1,87 @@
+"""Facts from SPEC §2 that `validate` must reproduce exactly.
+
+Keys mirror `compute_profile`. Profile keys missing here are informational only.
+"""
+
+EXPECTED: dict = {
+    "accounts": {
+        "rows": 10_000,
+        "account_id_min": 0,
+        "account_id_max": 9_999,
+        "account_id_unique": True,
+        "customer_id_one_to_one": True,
+        "behavior_id_min": 1,
+        "behavior_id_max": 5,
+        "is_fraud_tokens": ["false", "true"],
+        "country_values": ["US"],
+        "account_type_values": ["I"],
+    },
+    "transactions": {
+        "rows": 1_323_234,
+        "tx_id_min": 1,
+        "tx_id_max": 1_323_234,
+        "tx_id_unique": True,
+        "step_min": 0,
+        "step_max": 199,
+        "is_fraud_tokens": ["False", "True"],
+        "is_fraud_true": 1_719,
+        "with_alert_id": 1_719,
+        "tx_type_values": ["TRANSFER"],
+        "unknown_account_refs": 0,
+        "distinct_pairs": 68_947,
+        "out_degree_mean": 132.34,
+        "out_degree_min": 7,
+        "out_degree_max": 963,
+    },
+    "alerts": {
+        "rows": 1_719,
+        "all_match_a_transaction": True,
+        "fields_agree_with_transaction": True,
+        "matched_transactions_all_fraud": True,
+    },
+    "patterns": {
+        "total": 391,
+        "cycle": 192,
+        "fan_in": 199,
+        "tx_per_pattern_min": 1,
+        "tx_per_pattern_max": 5,
+        "tx_per_pattern_median": 4.0,
+        "span_steps_min": 0,
+        "span_steps_max": 10,
+    },
+    "cycles": {
+        "closed": 183,
+        "closed_length_5": 183,
+        "not_closed": 9,
+        "not_closed_max_tx": 4,
+        "same_amount": 192,
+        "closed_time_ordered": 15,
+    },
+    "fan_in": {
+        "single_receiver": 199,
+        "four_distinct_senders": 190,
+        "identical_amounts": 40,
+    },
+    "fraud_accounts": {
+        "total": 1_685,
+        "in_alerts": 1_639,
+        "never_in_pattern": 46,
+        "alert_accounts_not_flagged": 0,
+        "in_multiple_patterns": 228,
+    },
+    "data_quality": {
+        "sentinel_amount": 3_053,
+        "amount_gt_1e6": 15_911,
+        "amount_gt_1e6_fraud": 0,
+        "amount_zero": 19,
+        "amount_negative": 0,
+        "amount_more_than_2_decimals": 0,
+        "self_loops": 181,
+    },
+    "scales": {
+        "s25": {"max_step": 24, "transactions": 160_480, "patterns_fully_inside": 39},
+        "s50": {"max_step": 49, "transactions": 326_374, "patterns_fully_inside": 91},
+        "s100": {"max_step": 99, "transactions": 657_561, "patterns_fully_inside": 196},
+        "full": {"max_step": 199, "transactions": 1_323_234, "patterns_fully_inside": 391},
+    },
+}
